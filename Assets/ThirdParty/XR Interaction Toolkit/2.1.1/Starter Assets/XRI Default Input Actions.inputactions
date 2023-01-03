@@ -447,7 +447,7 @@
                 {
                     "name": "",
                     "id": "b8aebee7-fa03-43d4-bfb7-77a3f87452cc",
-                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "path": "<XRSimulatedController>{LeftHand}/primary2DAxisClick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -877,7 +877,7 @@
                 {
                     "name": "",
                     "id": "de466e6e-12bf-46a1-b0fd-ffbc343f3399",
-                    "path": "<XRController>{RightHand}/gripPressed",
+                    "path": "<XRSimulatedController>{RightHand}/primary2DAxisClick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
