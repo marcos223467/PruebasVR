@@ -28,9 +28,9 @@ public class Varita : MonoBehaviour
         InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
 
         if (devices.Count > 0)
-            device = devices[0];
+            device = devices[0];*/
         
-        rb = GetComponent<Rigidbody>();*/
+        rb = GetComponent<Rigidbody>();
         volver = false;
         activaLuz = false;
     }
