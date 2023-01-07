@@ -19,31 +19,38 @@ public class Varita : MonoBehaviour
 
     public GameObject luz;
 
-    private bool activaLuz;
+    private bool activaLuz, cogido;
+
+    private InputData _inputData;
     // Start is called before the first frame update
     void Start()
     {
-        /*List<InputDevice> devices = new List<InputDevice>();
-        InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
-        InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
-
-        if (devices.Count > 0)
-            device = devices[0];*/
+        _inputData = GetComponent<InputData>();
         
         rb = GetComponent<Rigidbody>();
         volver = false;
         activaLuz = false;
+        cogido = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*device.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
-        device.TryGetFeatureValue(CommonUsages.trigger, out float trig);
-        if (primaryButtonValue || trig > 0.1)
-            activaLuz = true;
-
-        luz.SetActive(activaLuz);*/
+        
+        if (cogido)
+        {
+            if (_inputData._rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool buttonValue))
+            {
+                if (buttonValue)
+                {
+                    activaLuz = !activaLuz;
+                    CompruebaLumos();
+                }
+            }
+            
+        }
+        
+        
     }
 
     public void FixedUpdate()
@@ -52,6 +59,8 @@ public class Varita : MonoBehaviour
         {
             Volver();
         }
+
+        
     }
 
 
@@ -74,5 +83,15 @@ public class Varita : MonoBehaviour
     public void ActivaVolver()
     {
         volver = true;
+    }
+
+    private void CompruebaLumos()
+    {
+        luz.SetActive(activaLuz);
+    }
+
+    public void setActive(bool enter)
+    {
+        cogido = enter;
     }
 }
