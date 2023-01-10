@@ -9,7 +9,7 @@ public class Varita : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public Transform attach;
+    public Transform attach, p_ataque;
 
     private bool volver;
 
@@ -19,9 +19,11 @@ public class Varita : MonoBehaviour
 
     public GameObject luz;
 
-    private bool activaLuz, cogido;
-
     private InputData _inputData;
+
+    private VoiceRecognition _voiceRecognition;
+
+    public GameObject proyectil;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,28 +31,12 @@ public class Varita : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         volver = false;
-        activaLuz = false;
-        cogido = false;
+        _voiceRecognition = GetComponent<VoiceRecognition>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (cogido)
-        {
-            if (_inputData._rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool buttonValue))
-            {
-                if (buttonValue)
-                {
-                    activaLuz = !activaLuz;
-                    CompruebaLumos();
-                }
-            }
-            
-        }
-        
-        
     }
 
     public void FixedUpdate()
@@ -85,13 +71,23 @@ public class Varita : MonoBehaviour
         volver = true;
     }
 
-    private void CompruebaLumos()
-    {
-        luz.SetActive(activaLuz);
-    }
-
     public void setActive(bool enter)
     {
-        cogido = enter;
+        if (enter)
+            _voiceRecognition.Stop(false);
+        else
+            _voiceRecognition.Stop(true);
+    }
+
+    public void Lumos(bool activar)
+    {
+        luz.SetActive(activar);
+    }
+
+    public void Flipendo()
+    {
+        GameObject _proyectil = Instantiate(proyectil, p_ataque.position, p_ataque.rotation);
+        _proyectil.GetComponent<Rigidbody>().AddForce(p_ataque.forward * 2, ForceMode.Impulse);
+        Destroy(_proyectil, 10f);
     }
 }
