@@ -15,7 +15,8 @@ public class Varita : MonoBehaviour
 
     public float speed;
 
-    private InputDevice device;
+    public Material empty, outliner;
+
 
     public GameObject luz;
 
@@ -24,6 +25,8 @@ public class Varita : MonoBehaviour
     private VoiceRecognition _voiceRecognition;
 
     public GameObject proyectil;
+
+    private bool cogido;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,29 @@ public class Varita : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         volver = false;
         _voiceRecognition = GetComponent<VoiceRecognition>();
+        cogido = false;
+    }
+
+    private void Update()
+    {
+        if (cogido)
+        {
+            if (_inputData._rightController.TryGetFeatureValue(CommonUsages.trigger, out float triggerValueR))
+            {
+                if (triggerValueR > 0.1)
+                {
+                    DetectaObjeto();
+                }
+            }
+            if (_inputData._leftController.TryGetFeatureValue(CommonUsages.trigger, out float triggerValueL))
+            {
+                if (triggerValueL > 0.1)
+                {
+                    DetectaObjeto();
+                }
+            }
+            
+        }
     }
 
     public void FixedUpdate()
@@ -69,9 +95,16 @@ public class Varita : MonoBehaviour
     public void setActive(bool enter)
     {
         if (enter)
+        {
             _voiceRecognition.Stop(false);
+            cogido = true;
+        }
         else
+        {
             _voiceRecognition.Stop(true);
+            cogido = false;
+        }
+            
     }
 
     public void Lumos(bool activar)
@@ -109,5 +142,21 @@ public class Varita : MonoBehaviour
             }
         }
 
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    public void DetectaObjeto()
+    {
+        LayerMask layer = ~11; //Todas las capas menos la 11, la de la varita
+
+        RaycastHit hit;
+        if (Physics.Raycast(p_ataque.position, p_ataque.forward, out hit, Mathf.Infinity, layer))
+        {
+            if (hit.rigidbody)
+            {
+                GameObject objecto = hit.transform.gameObject;
+                objecto.GetComponent<InteractableObjects>().HitByRay();
+            }
+        }
     }
 }

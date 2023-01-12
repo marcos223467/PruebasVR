@@ -59,11 +59,18 @@ public class VoiceRecognition : MonoBehaviour
     {
         if (orden)
         {
-            m_recognizer.Stop();
+            if (m_recognizer.IsRunning)
+            {
+                m_recognizer.Stop();
+            }
+            
         }
         else
         {
-            m_recognizer.Start();
+            if (!m_recognizer.IsRunning)
+            {
+                m_recognizer.Start();
+            }
         }
     }
 }

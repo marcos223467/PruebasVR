@@ -516,7 +516,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 735704617bddf154dafee816aa274bf2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -879,9 +879,17 @@ PrefabInstance:
       value: Box
       objectReference: {fileID: 0}
     - target: {fileID: 135489370638264365, guid: 371c8d68e6a39b442a7a6d50edd4a50b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 135489370638264365, guid: 371c8d68e6a39b442a7a6d50edd4a50b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 67a15f1c24806b349a52022d6ba97335, type: 2}
+    - target: {fileID: 135489370638264365, guid: 371c8d68e6a39b442a7a6d50edd4a50b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a5cf73551adfd8c46b74ec4670abb286, type: 2}
     - target: {fileID: 135489370638264367, guid: 371c8d68e6a39b442a7a6d50edd4a50b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4242,6 +4250,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 26c558e50e550704094b7cf24aa72991, type: 2}
+  - {fileID: 2100000, guid: b238fe812955048408a13cdd7ac45d90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4426,6 +4435,7 @@ GameObject:
   - component: {fileID: 1087485151017625479}
   - component: {fileID: 4973393573790253752}
   - component: {fileID: 4973393573790253753}
+  - component: {fileID: 4973393573790253754}
   m_Layer: 12
   m_Name: Mesa
   m_TagString: Untagged
@@ -4500,6 +4510,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &4973393573790253754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059994588631758042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d009fe97d4d7e9f47bbb4f252ed4ebba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  def: {fileID: 2100000, guid: b238fe812955048408a13cdd7ac45d90, type: 2}
+  outliner: {fileID: 2100000, guid: a5cf73551adfd8c46b74ec4670abb286, type: 2}
 --- !u!4 &5695818146943840470
 Transform:
   m_ObjectHideFlags: 0
