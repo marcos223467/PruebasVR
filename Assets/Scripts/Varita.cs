@@ -34,11 +34,6 @@ public class Varita : MonoBehaviour
         _voiceRecognition = GetComponent<VoiceRecognition>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void FixedUpdate()
     {
         if (volver)
@@ -89,5 +84,30 @@ public class Varita : MonoBehaviour
         GameObject _proyectil = Instantiate(proyectil, p_ataque.position, p_ataque.rotation);
         _proyectil.GetComponent<Rigidbody>().AddForce(p_ataque.forward * 2, ForceMode.Impulse);
         Destroy(_proyectil, 10f);
+    }
+
+    public void AccioRepulso(bool accio)
+    {
+        LayerMask layer = ~11; //Todas las capas menos la 11, la de la varita
+
+        RaycastHit hit;
+        if (Physics.Raycast(p_ataque.position, p_ataque.forward, out hit, Mathf.Infinity, layer))
+        {
+            if (hit.rigidbody)
+            {
+                Vector3 dir;
+                if (!accio)
+                {
+                    dir = (hit.point - p_ataque.position).normalized;
+                }
+                else
+                {
+                    dir = (p_ataque.position - hit.point).normalized;
+                }
+                dir.y += 0.1f;
+                hit.rigidbody.AddForce(dir * 10, ForceMode.Impulse);
+            }
+        }
+
     }
 }

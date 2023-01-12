@@ -43,6 +43,15 @@ public class VoiceRecognition : MonoBehaviour
                 _varita.Flipendo();
                 text.text = "Flipendo";
                 break;
+            case "Axio":
+            case "Accio":
+                _varita.AccioRepulso(true);
+                text.text = args.text;
+                break;
+            case "Repulso":
+                _varita.AccioRepulso(false);
+                text.text = args.text;
+                break;
         }
     }
 
