@@ -298,10 +298,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attach: {fileID: 0}
-  p_ataque: {fileID: 0}
+  p_ataque: {fileID: 5997690719705637983}
   speed: 5
+  empty: {fileID: 0}
+  outliner: {fileID: 0}
   luz: {fileID: 8896656970759844570}
-  proyectil: {fileID: 0}
+  proyectil: {fileID: 5442626183469804641, guid: 2f01c839fa9dbd346a6c4c0b4f73c9a3, type: 3}
 --- !u!114 &6626536630182622085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +335,9 @@ MonoBehaviour:
   - Accio
   - Axio
   - Nox
+  - Repulso
+  - Patronum
+  - Incendio
   text: {fileID: 0}
 --- !u!1 &8896656969764595182
 GameObject:
